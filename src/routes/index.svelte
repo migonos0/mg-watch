@@ -1,4 +1,12 @@
 <svelte:head>
-    <title>Inicio</title>
+    <title>Index</title>
 </svelte:head>
-<h1 class="text-3xl font-bold underline bg-slate-500">Hello World!</h1>
+
+<h1 class="text-xl">
+    Welcome Aboard
+</h1>
+<p>
+    My name is Miguel Rodríguez, I do programming and other stuff :b
+</p>
+
+<div></div>
