@@ -1,30 +1,19 @@
 <script lang="ts">
     import '../app.css';
     import {classList} from 'svelte-body';
-    import {onMount} from 'svelte';
-    import {load} from '../utilities/localStorage.utility';
+    import {isDarkThemeEnabled} from '../stores';
+    import {setItem} from '../utilities/localStorage.utility';
 
-    let isDarkThemeEnabled: boolean;
-
-    onMount(() => {
-        isDarkThemeEnabled =
-            load('global_theme') === null
-                ? window.matchMedia('(prefers-color-scheme: dark)').matches
-                : load('global_theme') !== 'light';
-    });
-
-    function toggleTheme() {
-        isDarkThemeEnabled = !isDarkThemeEnabled;
-
-        localStorage.setItem(
-            'global_theme',
-            isDarkThemeEnabled ? 'dark' : 'light'
-        );
-    }
+    const toggleTheme = () => {
+        $isDarkThemeEnabled = !$isDarkThemeEnabled;
+        setItem('global_theme', $isDarkThemeEnabled ? 'dark' : 'light');
+    };
 </script>
 
 <svelte:body
-    use:classList={isDarkThemeEnabled ? 'dark bg-gray-900 text-white' : 'bg-white'} />
+    use:classList={$isDarkThemeEnabled
+        ? 'dark bg-gray-900 text-white'
+        : 'bg-white'} />
 
 <slot />
 
@@ -61,9 +50,7 @@
         </svg>{/if}
 </button>
 
-<footer
-    class="bg-gray-700 absolute bottom-0 w-full text-center text-white"
->
+<footer class="bg-gray-700 absolute bottom-0 w-full text-center text-white">
     <p class="text-xs">Buit with love by</p>
     <strong
         ><a
@@ -72,3 +59,4 @@
         ></strong
     >
 </footer>
+``
