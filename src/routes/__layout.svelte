@@ -24,7 +24,7 @@
 <svelte:body
     use:classList={$isDarkThemeEnabled
         ? 'dark bg-gray-900 text-white'
-        : 'bg-white'} />
+        : 'bg-white text-gray-900'} />
 
 <slot />
 
@@ -32,7 +32,7 @@
     on:click={toggleTheme}
     class="fixed bottom-4 right-2 z-10 dark:bg-stone-900 dark:text-white text-stone-900 bg-white p-3 shadow-lg border-2 border-stone-900 rounded-full"
 >
-    {#if isDarkThemeEnabled}<svg
+    {#if $isDarkThemeEnabled}<svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
             fill="none"
@@ -65,9 +65,8 @@
     <p class="text-xs">Buit with love by</p>
     <strong
         ><a
-            href="https://www.github.com/migonos0"
-            target="https://www.github.com/migonos0">@migonos0</a
+            href="https://github.com/migonos0/mg-watch"
+            target="https://github.com/migonos0/mg-watch">@migonos0</a
         ></strong
     >
 </footer>
-``
