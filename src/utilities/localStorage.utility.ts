@@ -20,39 +20,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export const load = (item: string): string | null => {
+export const getItem = (key: string): string | null => {
     try {
-        return localStorage.getItem(item);
+        return localStorage.getItem(key);
     } catch (err) {
         return null;
     }
 };
-export const save = (item: string, data: string) => {
+export const setItem = (key: string, value: string) => {
     try {
-        localStorage.setItem(item, data);
+        localStorage.setItem(key, value);
     } catch (err) {
         //Ignore write when is error
     }
 };
-export const loadObject = <T = unknown>(item: string) => {
+export const isItemSet = (key: string) => {
+    return getItem(key) !== null;
+};
+export const getObject = <T = unknown>(key: string): T | null => {
     try {
-        const serializedState = localStorage.getItem(item);
-        return serializedState ? (JSON.parse(serializedState) as T) : null;
+        const serializedState = localStorage.getItem(key);
+        return serializedState ? JSON.parse(serializedState) : null;
     } catch (err) {
         return null;
     }
 };
-export const saveObject = <T = unknown>(item: string, state: T) => {
+export const setObject = <T = unknown>(key: string, value: T) => {
     try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem(item, serializedState);
+        const serializedValue = JSON.stringify(value);
+        localStorage.setItem(key, serializedValue);
     } catch (err) {
         //Ignore write when is error
     }
 };
-export const deleteItem = (item: string) => {
+export const removeItem = (key: string) => {
     try {
-        localStorage.removeItem(item);
+        localStorage.removeItem(key);
     } catch (err) {
         //Ignore write when is error
     }
