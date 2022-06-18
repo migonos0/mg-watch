@@ -2,7 +2,18 @@
     import '../app.css';
     import {classList} from 'svelte-body';
     import {isDarkThemeEnabled} from '../stores';
-    import {setItem} from '../utilities/localStorage.utility';
+    import {
+        getItem,
+        isItemSet,
+        setItem,
+    } from '../utilities/localStorage.utility';
+    import {onMount} from 'svelte';
+
+    onMount(() => {
+        $isDarkThemeEnabled = isItemSet('global_theme')
+            ? getItem('global_theme') === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
 
     const toggleTheme = () => {
         $isDarkThemeEnabled = !$isDarkThemeEnabled;
