@@ -66,7 +66,7 @@
     <strong
         ><a
             href="https://github.com/migonos0/mg-watch"
-            target="https://github.com/migonos0/mg-watch">@migonos0</a
+            target="https://github.com/migonos0/mg-watch">@me</a
         ></strong
     >
 </footer>
